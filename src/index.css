@@ -1,0 +1,334 @@
+:root {
+  --primary: #4f6ef7;
+  --primary-dark: #3b54d4;
+  --primary-light: #eef1fe;
+  --accent: #ff7a45;
+  --success: #52c41a;
+  --warning: #faad14;
+  --danger: #ff4d4f;
+  --text: #1f2329;
+  --text-light: #646a73;
+  --text-lighter: #8f959e;
+  --border: #e5e6eb;
+  --bg: #f5f6fa;
+  --card: #ffffff;
+  --radius: 16px;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--bg);
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 72px;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+button:active { opacity: 0.85; }
+
+.page {
+  padding: 16px;
+}
+
+.page-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 12px;
+}
+
+/* 底部导航栏 */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  background: #fff;
+  border-top: 1px solid var(--border);
+  display: flex;
+  z-index: 100;
+  padding: 8px 0 env(safe-area-inset-bottom);
+}
+
+.tab-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 0;
+  color: var(--text-lighter);
+  font-size: 11px;
+  background: none;
+  gap: 2px;
+}
+
+.tab-item.active {
+  color: var(--primary);
+}
+
+.tab-item .icon {
+  font-size: 22px;
+}
+
+/* 通用按钮 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: transform 0.1s, opacity 0.15s;
+}
+
+.btn:active {
+  opacity: 0.85;
+  transform: scale(0.96);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn-primary:active { background: var(--primary-dark); }
+
+.btn-block { width: 100%; }
+
+/* 统计数字卡片 */
+.stat-row {
+  display: flex;
+  gap: 12px;
+}
+
+.stat-item {
+  flex: 1;
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.stat-num {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-top: 4px;
+}
+
+/* 进度条 */
+.progress-bar {
+  height: 8px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 8px 0;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 4px;
+  transition: width 0.3s;
+}
+
+/* 空状态 */
+.empty {
+  text-align: center;
+  padding: 48px 16px;
+  color: var(--text-lighter);
+  animation: fadeIn 0.4s ease;
+}
+
+.empty-icon { font-size: 48px; margin-bottom: 12px; }
+
+/* ===== 动画 ===== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes growUp {
+  from { height: 0; }
+}
+
+@keyframes pop {
+  0% { transform: scale(0); }
+  60% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200px 0; }
+  100% { background-position: 200px 0; }
+}
+
+/* 卡片进入动画 */
+.card {
+  animation: fadeInUp 0.4s ease both;
+}
+
+.card:nth-child(1) { animation-delay: 0.02s; }
+.card:nth-child(2) { animation-delay: 0.06s; }
+.card:nth-child(3) { animation-delay: 0.10s; }
+.card:nth-child(4) { animation-delay: 0.14s; }
+.card:nth-child(5) { animation-delay: 0.18s; }
+
+.stat-item {
+  animation: fadeInUp 0.4s ease both;
+}
+.stat-item:nth-child(1) { animation-delay: 0.02s; }
+.stat-item:nth-child(2) { animation-delay: 0.06s; }
+.stat-item:nth-child(3) { animation-delay: 0.10s; }
+
+/* 柱状图 */
+.bar-chart {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 8px;
+  height: 130px;
+}
+
+.bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.bar-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2px;
+  height: 100px;
+  width: 100%;
+}
+
+.bar {
+  width: 55%;
+  border-radius: 4px 4px 0 0;
+  animation: growUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  transition: opacity 0.2s;
+}
+
+.bar:hover { opacity: 0.8; }
+
+.bar-learn { background: var(--primary); animation-delay: 0.2s; }
+.bar-review { background: var(--accent); animation-delay: 0.35s; }
+
+.bar-label {
+  font-size: 10px;
+  color: var(--text-light);
+}
+
+/* 图例 */
+.legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.legend-line {
+  display: inline-block;
+  width: 18px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+/* 折线图 */
+.line-chart-wrap {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
+}
+
+.line-chart {
+  display: block;
+}
+
+.line-chart path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: drawLine 1.2s ease-out forwards;
+}
+
+@keyframes drawLine {
+  to { stroke-dashoffset: 0; }
+}
+
+.line-chart circle {
+  opacity: 0;
+  animation: pop 0.3s ease forwards;
+  animation-delay: 1s;
+}
+
+.line-chart-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--text-light);
+  padding: 0 2px;
+  margin-top: 4px;
+}
+
+/* 进度条增长动画 */
+.progress-fill {
+  transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 骨架屏加载 */
+.skeleton {
+  background: linear-gradient(90deg, #eee 25%, #f5f5f5 37%, #eee 63%);
+  background-size: 400px 100%;
+  animation: shimmer 1.4s ease infinite;
+  border-radius: 6px;
+}
