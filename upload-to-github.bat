@@ -61,9 +61,9 @@ if errorlevel 1 goto fail
 echo.
 echo [5/5] push to server
 echo.
-echo  >>> If asked for credentials:
-echo  >>>   Username = your Gitee account name
-echo  >>>   Password = your Gitee account password
+echo  [!] If asked for credentials:
+echo  [!]  Username = your Gitee account name
+echo  [!]  Password = your Gitee account password
 echo.
 git -c credential.helper= push -u origin main
 if errorlevel 1 goto fail
@@ -88,7 +88,7 @@ echo.
 echo Check the error message above.
 echo   "Repository not found"     -^> URL wrong, or repo not created
 echo   "Authentication failed"    -^> wrong username / password
-echo   "Failed to connect"        -> network problem, run again
+echo   "Failed to connect"        -^> network problem, run again
 echo.
 pause
 exit /b 1
