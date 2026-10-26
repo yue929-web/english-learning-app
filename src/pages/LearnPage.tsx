@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useApp } from '../store/AppContext';
 import { getBookById, getCombinedWordMap } from '../data/words';
 import { speak } from '../lib/speech';
+import { currentProfileId } from '../lib/storage';
 import type { Quality } from '../types';
 
 interface Props {
@@ -22,7 +23,7 @@ export default function LearnPage({ onBack }: Props) {
   const book =
     getBookById(settings.selectedBookId, importedBooks) || getBookById('cet4', importedBooks)!;
   const wordMap = getCombinedWordMap(importedBooks);
-  const pointerKey = `ela_detect_start_${settings.selectedBookId}`;
+  const pointerKey = `ela_detect_start_${currentProfileId()}_${settings.selectedBookId}`;
 
   const [windowStart, setWindowStart] = useState(() => {
     const saved = localStorage.getItem(pointerKey);
